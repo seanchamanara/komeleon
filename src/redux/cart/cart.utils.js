@@ -21,3 +21,22 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
         return [...cartItems, { ...cartItemToAdd, quantity: 1 }]
 
 };
+
+export const removeItemFromCart = (cartItems,cartItemToRemove) => {
+    const existingCartItem = cartItems.find(
+        cartItem => cartItem.id === cartItemToRemove.id
+    )
+
+    if (existingCartItem.quantity === 1) {
+        //filter returning cartitems (minus matching cartItem id's which is removed)
+        return cartItems.filter(cartItem => cartItem.id !== cartItemToRemove.id)
+    }
+    return cartItems.map( cartItem => 
+        cartItem.id === cartItemToRemove.id 
+
+        //return new object spreading in cartItem with its propererties, but decrease the quantity property by one 
+        ? {...cartItem, quantity: cartItem.quantity -1 }
+        : cartItem
+       
+    );
+}
