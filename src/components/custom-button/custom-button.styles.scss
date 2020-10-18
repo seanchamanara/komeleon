@@ -24,14 +24,14 @@
 
     //if you don't use ampersand, styling will be applied to child element of custom button
     // &.google-sign-in = .custom-button .google-sign-in
-    &.google-sign-in {
-        background-color: #4285f4;
-        color: white;
+  &.google-sign-in {
+      background-color: #4285f4;
+      color: white;
 
-        &:hover {
-            background-color: #357ae8;
-            border: none;
-        }
+    &:hover {
+        background-color: #357ae8;
+        border: none;
+    }
   }
 
   &.inverted {

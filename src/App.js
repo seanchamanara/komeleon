@@ -17,6 +17,8 @@ import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
 
 
+
+
 class App extends React.Component {
 
 
@@ -48,9 +50,8 @@ class App extends React.Component {
      
         //if userAuth does not exists
       setCurrentUser(userAuth);
-     
+  
 
-      // console.log(user);
     });
   }
 
@@ -59,9 +60,6 @@ class App extends React.Component {
     //closes firebase auth subscription
     this.unsubscribeFromAuth();
   }
-
-
-
   render() {
     return (
       <div>
@@ -85,13 +83,14 @@ class App extends React.Component {
 
 const mapStateToProps = createStructuredSelector ({
   currentUser: selectCurrentUser
+
 });
 
 
 const mapDispatchToProps = dispatch => ({
   //dispatch receives an action object that is sent to every root reducer, envoking setCurrentUser with user which will be used as thr payload
   setCurrentUser: user => dispatch(setCurrentUser(user))
-})
+});
 export default connect(
   mapStateToProps, 
   mapDispatchToProps
