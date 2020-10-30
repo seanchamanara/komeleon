@@ -17,7 +17,7 @@ import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink} from './header.styles'
 
 
-//currentUser de-structured from auth object
+
 const Header = ( { currentUser, hidden }) => (
     <HeaderContainer>
         <LogoContainer  to="/">

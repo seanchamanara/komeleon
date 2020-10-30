@@ -12,8 +12,8 @@ import CheckoutPage from './pages/checkout/checkout.component';
 
 import Header from './components/header/header.component';
 
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-import { setCurrentUser } from './redux/user/user.actions';
+// import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+// import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
 
 
@@ -26,33 +26,33 @@ class App extends React.Component {
 
   componentDidMount(){
 
-    const { setCurrentUser } = this.props;
-    this.unsubscribeFromAuth = auth.onAuthStateChanged( async userAuth => {
-      // this.setState({ currentUser: user });
+    // const { setCurrentUser } = this.props;
+    // this.unsubscribeFromAuth = auth.onAuthStateChanged( async userAuth => {
+    //   // this.setState({ currentUser: user });
 
-      //if userAuth exists receive userAuth object from createUserProfileDocument method in firebase file, if userAuth object does not exist, firebase file will create a new userAuth object
-      if (userAuth) {
-        //creating userRef from createUserProfileDocument method, passing it the userAuth object
-        const userRef = await createUserProfileDocument(userAuth);
+    //   //if userAuth exists receive userAuth object from createUserProfileDocument method in firebase file, if userAuth object does not exist, firebase file will create a new userAuth object
+    //   if (userAuth) {
+    //     //creating userRef from createUserProfileDocument method, passing it the userAuth object
+    //     const userRef = await createUserProfileDocument(userAuth);
 
-        //subscribing to new user data, onSnapshot is a method that returns the snapshot object
-        userRef.onSnapshot(snapShot => {
+    //     //subscribing to new user data, onSnapshot is a method that returns the snapshot object
+    //     userRef.onSnapshot(snapShot => {
 
-          //creating a new object using snapshot, setting state id and data(); 
-            setCurrentUser ({
-              id: snapShot.id,
-              ...snapShot.data()
-            });
+    //       //creating a new object using snapshot, setting state id and data(); 
+    //         setCurrentUser ({
+    //           id: snapShot.id,
+    //           ...snapShot.data()
+    //         });
     
-        });
+    //     });
         
-      }
+    //   }
      
-        //if userAuth does not exists
-      setCurrentUser(userAuth);
+    //     //if userAuth does not exists
+    //   setCurrentUser(userAuth);
   
 
-    });
+    // });
   }
 
   componentWillUnmount(){
@@ -87,11 +87,7 @@ const mapStateToProps = createStructuredSelector ({
 });
 
 
-const mapDispatchToProps = dispatch => ({
-  //dispatch receives an action object that is sent to every root reducer, envoking setCurrentUser with user which will be used as thr payload
-  setCurrentUser: user => dispatch(setCurrentUser(user))
-});
+
 export default connect(
-  mapStateToProps, 
-  mapDispatchToProps
+  mapStateToProps
   )(App);
