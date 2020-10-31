@@ -15,7 +15,7 @@ import Header from './components/header/header.component';
 // import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 // import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
-
+import { checkUserSession } from './redux/user/user.actions';
 
 
 
@@ -26,33 +26,8 @@ class App extends React.Component {
 
   componentDidMount(){
 
-    // const { setCurrentUser } = this.props;
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged( async userAuth => {
-    //   // this.setState({ currentUser: user });
-
-    //   //if userAuth exists receive userAuth object from createUserProfileDocument method in firebase file, if userAuth object does not exist, firebase file will create a new userAuth object
-    //   if (userAuth) {
-    //     //creating userRef from createUserProfileDocument method, passing it the userAuth object
-    //     const userRef = await createUserProfileDocument(userAuth);
-
-    //     //subscribing to new user data, onSnapshot is a method that returns the snapshot object
-    //     userRef.onSnapshot(snapShot => {
-
-    //       //creating a new object using snapshot, setting state id and data(); 
-    //         setCurrentUser ({
-    //           id: snapShot.id,
-    //           ...snapShot.data()
-    //         });
-    
-    //     });
-        
-    //   }
-     
-    //     //if userAuth does not exists
-    //   setCurrentUser(userAuth);
-  
-
-    // });
+const { checkUserSession } = this.props;
+    checkUserSession();
   }
 
   componentWillUnmount(){
@@ -86,8 +61,12 @@ const mapStateToProps = createStructuredSelector ({
 
 });
 
+const mapDispatchToProps = dispatch => ({
+  checkUserSession: () => dispatch(checkUserSession())
+});
+
 
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,mapDispatchToProps
   )(App);
