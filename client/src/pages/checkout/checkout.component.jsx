@@ -49,17 +49,31 @@ const CheckoutPage = ({ cartItems, total }) => (
         <TotalContainer>
             <div>TOTAL: ${total}</div>
 
-            <WarningContainer>
-            *Please use the following test credit card for payments*
-            <br />
-            4242 4242 4242 4242 - Exp 01/22 - CW: 123
+
             
+            <WarningContainer>
+
+            <br />
+         
             </WarningContainer>
+
+
+
+
             <StripeCheckoutButton price={total} />
         </TotalContainer>      
     </CheckoutPageContainer>
 
 );
+
+// **********For Testing Credit Card Payment Fill in text for WarningContainer above:
+// <WarningContainer>
+// *Please use the following test credit card for payments*
+// <br />
+// 4242 4242 4242 4242 - Exp 01/22 - CW: 123           
+// </WarningContainer>
+
+
 
 
 const mapStateToProps = createStructuredSelector({
